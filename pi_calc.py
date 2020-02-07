@@ -1,16 +1,16 @@
 class _Pi:
     '''
-    An abstract class for a Pi generator interface.
+    An abstract class for a Pi generator.
     '''
     
     def pi(num=None):
         '''
         A generator returning an iterator
         of digits of pi after the decimal point.
-        If num is presented, returns the num number
-        digits of the Pi after the decimal point,
-        else returns infinite number of digits.
-        Note: this doesn't include the first 3. part.
+        If num is presented, returns [num] digits of the Pi 
+        after the decimal point,
+        else no limit's set.
+        Note: this doesn't include the first "3." part.
         '''
            
         raise NotImplementedError()
@@ -95,8 +95,10 @@ class BBP2(_Pi):
             yield digit
     
     
-
-if __name__ == "__main__":
+def measure_timings():
     from timeit import timeit
     print("\tThe first method's timing is", timeit(lambda: BBP1.print_n_digits_of_pi(100), number=10))
     print("\tThe second method's timing is", timeit(lambda: BBP2.print_n_digits_of_pi(100), number=10))
+
+if __name__ == "__main__":
+    measure_timings()
