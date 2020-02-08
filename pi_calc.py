@@ -95,10 +95,21 @@ class BBP2(_Pi):
             yield digit
     
     
-def measure_timings():
+def _measure_timings(num_of_runs=10, num_of_digit=100):
     from timeit import timeit
-    print("\tThe first method's timing is", timeit(lambda: BBP1.print_n_digits_of_pi(100), number=10))
-    print("\tThe second method's timing is", timeit(lambda: BBP2.print_n_digits_of_pi(100), number=10))
+    print(
+      "\tThe first method's timing is", 
+      timeit(lambda: BBP1.print_n_digits_of_pi(num_of_digit),
+             number=num_of_runs)
+      / num_of_runs
+    )
+    print(
+      "\tThe second method's timing is",
+      timeit(lambda: BBP2.print_n_digits_of_pi(num_of_digit),
+             number=num_of_runs)
+      / num_of_runs
+    )
+
 
 if __name__ == "__main__":
-    measure_timings()
+    _measure_timings()
