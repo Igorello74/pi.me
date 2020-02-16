@@ -2,7 +2,7 @@
 A brand-new compression algorithm based on using various irrational numbers.
 
 ## How does it work?
-Imagine an irrational number, Pi, for instance. Let's take it's first digits in hexadecimal notation (for convinience).
+Imagine an irrational number, Pi, for instance. Let's take its first digits in hexadecimal notation (for convinience).
 Also, imagine that we have an abstract file. Here they are:
 |π (in hex)|File contents (in hex)|
 |---|---|
