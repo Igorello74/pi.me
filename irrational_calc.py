@@ -1,3 +1,16 @@
+"""Add classes calculating irrational numbers (as Pi, e, and so on).
+Also, define abstract class IrrationalSerial and IrrationalDirect.
+The first one is used to create the buffer of the irrational number,
+when we need all the digits serially. The second one (if present) is used
+when decoding - we don't need to save a big buffer, we can just take required
+digits on go, in case if the constant allows, of course.
+"""
+
+from abc import ABC, abstractmethod
+
+class IrrationalSerial(ABC):
+    pass
+
 class _Pi:
     '''
     An abstract class for a Pi generator.
