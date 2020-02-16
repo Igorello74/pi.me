@@ -8,8 +8,8 @@ irrational constants. For instance:
     Then, the input file is divided into clasters that were found:
         3f|19|5a|31|0370|2e|30
     The output file in hex (schematically)
-        [3|2][18|2][10|2][16|2][24|4][23|2][12|2]
+        [3|2][19|2][10|2][16|2][25|4][23|2][12|2]
 
 This file contains such classes:
   ConstantCompressor - an abstract class for this compression algorithm.
-    
+"""
