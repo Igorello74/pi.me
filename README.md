@@ -15,7 +15,7 @@ Then, let's separate this file in segments (called *clasters*) that can be found
 |---|---|---|---|---|---|---|---|
 |**Encoded**|3-2 | 19-2 | 10-2 | 16-2 | 25-4 | 23-2 | 12-2|
 
-![](/layout.svg)
+![](/layout.text_to_path.svg)
 
 ### Note
 This explaination is rough and doesn't disclose some details (particularly, how the file is separated in *clasters*
