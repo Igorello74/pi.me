@@ -8,15 +8,21 @@ digits on go, in case if the constant allows, of course.
 
 from abc import ABC, abstractmethod
 
-class IrrationalSerial(ABC):
-    pass
+# class Irrational(ABC):
+#     class Serial(ABC):
 
-class _Pi:
+
+class _Pi(ABC):
     '''
     An abstract class for a Pi generator.
     '''
+
+    @abstractmethod
+    def __init__(self, num=None):
+        pass
     
-    def pi(num=None):
+    @abstractmethod
+    def __iter__(self):
         '''
         A generator returning an iterator
         of digits of pi after the decimal point.
@@ -25,8 +31,6 @@ class _Pi:
         else no limit's set.
         Note: this doesn't include the first "3." part.
         '''
-           
-        raise NotImplementedError()
     
     @classmethod
     def print_n_digits_of_pi(cls, n):
@@ -36,13 +40,11 @@ class _Pi:
         
         print('3.', end='')
         
-        for digit in cls.pi(n):
+        for digit in cls(n):
             print("0123456789ABCDEF"[digit], end='')
         
         print()
     
-    class Meta:
-        abstract = True
 
 class BBP1(_Pi):
     '''
@@ -52,18 +54,18 @@ class BBP1(_Pi):
     It's the first implementation of the formula.
     '''
     
-    @staticmethod
-    def pi(num=None):
-        
-        n, d = 0, 1
-        
+    def __init__(self, num=None):
         if num:
-            iterator = range(num)
+            self.iterator = range(num)
         else:
             from itertools import count
-            iterator = count()
-            
-        for N in iterator:
+            self.iterator = count()
+
+
+    def __iter__(self):
+        n, d = 0, 1
+        
+        for N in self.iterator:
             xn = (120*N**2 + 151*N + 47)
             xd = (512*N**4 + 1024*N**3 + 712*N**2 + 194*N + 15)
             n = ((16 * n * xd) + (xn * d)) % (d * xd)
@@ -78,17 +80,17 @@ class BBP2(_Pi):
     (https://en.m.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula).
     It's the second implementation of the formula (the fastest one).
     '''
-    
-    @staticmethod
-    def pi(num=None):
-        
-        a, b = 0, 1
-        
+
+    def __init__(self, num=None):
         if num:
-            iterator = range(1, num+1)
+            self.iterator = range(1, num+1)
         else:
             from itertools import count
-            iterator = count()
+            self.iterator = count()
+
+
+    def __iter__(self):
+        a, b = 0, 1
         
         ak = 120 * 0**2 + 151 * 0 + 47
         bk = 512 * 0**4 + 1024 * 0**3 + 712 * 0**2 + 194 * 0 + 15
@@ -98,7 +100,7 @@ class BBP2(_Pi):
         digit, a = divmod(a, b)
         
                 
-        for k in iterator:
+        for k in self.iterator:
             ak = 120 * k**2 + 151 * k + 47
             bk = 512 * k**4 + 1024 * k**3 + 712 * k**2 + 194 * k + 15
             
